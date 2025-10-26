@@ -1,12 +1,12 @@
-// scripts/app.js  — v7000
+// /scripts/app.js  — v9007
 (() => {
-  const VERSION = '7000';
+  const VERSION = '9007';
 
-  // Stamp version in footer if present
+  // stamp version if you have a footer span#app-version
   const vLabel = document.getElementById('app-version');
   if (vLabel) vLabel.textContent = `v${VERSION}`;
 
-  // Online/offline body class
+  // online/offline class
   function setNetClass() {
     document.body.classList.toggle('is-offline', !navigator.onLine);
   }
@@ -14,16 +14,14 @@
   window.addEventListener('offline', setNetClass);
   setNetClass();
 
-  // Service Worker registration + update prompt
+  // Service Worker
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js?v=' + VERSION, { scope: '/' })
       .catch(err => console.warn('[SW] register failed', err));
 
-    // Update prompt (BroadcastChannel optional)
     const promptEl = document.getElementById('updatePrompt');
     const btnNow   = document.getElementById('btnUpdateNow');
     const btnLater = document.getElementById('btnUpdateLater');
-
     const showPrompt = () => promptEl && (promptEl.style.display = 'block');
     const hidePrompt = () => promptEl && (promptEl.style.display = 'none');
 
@@ -39,14 +37,13 @@
         hidePrompt();
         const regs = await navigator.serviceWorker.getRegistrations();
         regs.forEach(r => r.update());
-        // Force reload to new cache
         location.reload();
       });
     }
     if (btnLater) btnLater.addEventListener('click', hidePrompt);
   }
 
-  // Install prompt hook (if your installPrompt.js exposes window.WhyleeInstall)
+  // Optional install prompt hookup
   const btnInstall = document.getElementById('btn-install');
   if (btnInstall && window.WhyleeInstall) {
     window.addEventListener('beforeinstallprompt', (e) => {
@@ -57,11 +54,9 @@
     });
   }
 
-  // Refresh button reloads app & SW
   const btnRefresh = document.getElementById('btn-refresh');
   if (btnRefresh) btnRefresh.addEventListener('click', () => location.reload());
 
-  // Menu button reserved for future side-drawer (scripts/menu.js)
   const btnMenu = document.getElementById('btn-menu');
   if (btnMenu) btnMenu.addEventListener('click', () => document.body.classList.toggle('menu-open'));
 })();
