@@ -1,56 +1,84 @@
-// /scripts/firebase-bridge.js  (v9007)
-// Lightweight bridge that loads Firebase from the official CDN (ESM) and exports what the app uses.
-// IMPORTANT: /scripts/firebase-config.js must be loaded first (in HTML) so window.firebaseConfig exists.
+// /scripts/firebase-bridge.js – v9007
+// Single place to initialize Firebase (uses global window.firebaseConfig from firebase-config.js)
+// and to re-export the SDK pieces your app imports elsewhere.
 
-const cfg = (typeof window !== "undefined" && window.firebaseConfig) || null;
-if (!cfg) {
+if (!window.firebaseConfig || typeof window.firebaseConfig !== 'object') {
   throw new Error("[firebase-bridge] Missing global firebaseConfig. Make sure /scripts/firebase-config.js is loaded before this file.");
 }
 
-// Pin a Firebase version you’ve tested
-const FB_VER = "11.0.1";
-const BASE = `https://www.gstatic.com/firebasejs/${FB_VER}`;
+// Import the modular SDK directly from gstatic (works with your CSP)
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
 
-// Lazy-load Firebase ESM modules from the CDN
-const [
-  { initializeApp },
-  { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut },
-  { getFirestore, doc, getDoc, setDoc, updateDoc, addDoc, collection, query, where, orderBy, limit, onSnapshot, serverTimestamp, arrayUnion },
-  { getStorage, ref, getDownloadURL }
-] = await Promise.all([
-  import(`${BASE}/firebase-app.js`),
-  import(`${BASE}/firebase-auth.js`),
-  import(`${BASE}/firebase-firestore.js`),
-  import(`${BASE}/firebase-storage.js`)
-]);
-
-// Init
-const app = initializeApp(cfg);
-const auth = getAuth(app);
-const db = getFirestore(app);
-const storage = getStorage(app);
-
-// Re-export what the rest of the site uses.
-// (This keeps your page scripts clean and avoids importing the CDN directly.)
-export {
-  app,
-  auth,
-  db,
-  storage,
-  // auth
+import {
+  getAuth,
   onAuthStateChanged,
-  signInWithPopup,
-  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
   signOut,
-  // firestore
-  doc, getDoc, setDoc, updateDoc, addDoc,
-  collection, query, where, orderBy, limit,
-  onSnapshot, serverTimestamp, arrayUnion,
-  // storage
-  ref, getDownloadURL
+  sendPasswordResetEmail,
+  getIdTokenResult
+} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  addDoc,
+  collection,
+  getDocs,
+  query,
+  where,
+  orderBy,
+  limit,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+import {
+  getStorage,
+  ref,
+  getDownloadURL,
+  uploadBytes
+} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
+
+// Initialize
+export const firebaseApp = initializeApp(window.firebaseConfig);
+
+// Instances
+export const auth = getAuth(firebaseApp);
+export const db = getFirestore(firebaseApp);
+export const storage = getStorage(firebaseApp);
+
+// Re-export AUTH API used across the app
+export {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
+  sendPasswordResetEmail,
+  getIdTokenResult
 };
 
-// Optional: make minimal globals for legacy code that expects window.FirebaseBridge
-if (typeof window !== "undefined") {
-  window.FirebaseBridge = { app, auth, db, storage };
-}
+// Re-export FIRESTORE API used across the app (LEADERBOARD, etc.)
+export {
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  addDoc,
+  collection,
+  getDocs,
+  query,
+  where,
+  orderBy,
+  limit,
+  serverTimestamp
+};
+
+// Re-export STORAGE helpers (poster/avatars if ever needed)
+export {
+  ref,
+  getDownloadURL,
+  uploadBytes
+};
