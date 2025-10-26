@@ -8,7 +8,6 @@ if (!window.firebaseConfig || typeof window.firebaseConfig !== 'object') {
 
 // Import the modular SDK directly from gstatic (works with your CSP)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-
 import {
   getAuth,
   onAuthStateChanged,
@@ -18,7 +17,6 @@ import {
   sendPasswordResetEmail,
   getIdTokenResult
 } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
-
 import {
   getFirestore,
   doc,
@@ -34,7 +32,6 @@ import {
   limit,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
-
 import {
   getStorage,
   ref,
@@ -50,7 +47,7 @@ export const auth = getAuth(firebaseApp);
 export const db = getFirestore(firebaseApp);
 export const storage = getStorage(firebaseApp);
 
-// Re-export AUTH API used across the app
+// Re-export AUTH API
 export {
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -60,7 +57,7 @@ export {
   getIdTokenResult
 };
 
-// Re-export FIRESTORE API used across the app (LEADERBOARD, etc.)
+// Re-export FIRESTORE API
 export {
   doc,
   getDoc,
@@ -76,9 +73,5 @@ export {
   serverTimestamp
 };
 
-// Re-export STORAGE helpers (poster/avatars if ever needed)
-export {
-  ref,
-  getDownloadURL,
-  uploadBytes
-};
+// Re-export STORAGE helpers
+export { ref, getDownloadURL, uploadBytes };
