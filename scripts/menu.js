@@ -1,27 +1,27 @@
-// scripts/menu.js — v7000
-import { Entitlements } from './entitlements.js';
+// /scripts/menu.js (v9007)
+import { onAuthStateChanged, auth } from "/scripts/firebase-bridge.js?v=9007";
+import Entitlements, { Entitlements as Ents } from "/scripts/entitlements.js?v=9007";
 
-function init() {
-  const isPro = Entitlements.isPro?.() || false;
-  const proLink = Array.from(document.querySelectorAll('.menu a'))
-    .find(a => /pro\.html$/.test(a.getAttribute('href') || ''));
+const elName   = document.getElementById("menu-user-name");
+const elStatus = document.getElementById("menu-entitlement");
+const elProBtn = document.getElementById("menu-go-pro");
 
-  if (isPro && proLink) {
-    proLink.textContent = 'Pro (Active)';
-    proLink.classList.add('muted');
-  }
-
-  // Optional: show trial badge
-  const t = Entitlements.trialStatus?.();
-  if (t?.active && proLink) {
-    const badge = document.createElement('span');
-    badge.className = 'tag';
-    badge.textContent = `Trial: ${t.remaining}d left`;
-    badge.style.marginLeft = '8px';
-    proLink.after(badge);
-  }
+function setEntitlementBadge(kind) {
+  if (!elStatus) return;
+  const label = kind === Ents.PRO ? "PRO" : "FREE";
+  elStatus.textContent = label;
+  elStatus.dataset.kind = label.toLowerCase();
 }
 
-window.addEventListener('DOMContentLoaded', init);
-window.addEventListener('wl:pro', init);
-window.addEventListener('wl:trial', init);
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    elName && (elName.textContent = "Guest");
+    setEntitlementBadge(Ents.FREE);
+    elProBtn && (elProBtn.hidden = false);
+    return;
+  }
+  elName && (elName.textContent = user.displayName || user.email || "Player");
+  // In a real app you'd read a claim/field to know Pro vs Free.
+  setEntitlementBadge(Ents.FREE);
+  elProBtn && (elProBtn.hidden = false);
+});
