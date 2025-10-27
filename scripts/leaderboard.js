@@ -1,47 +1,35 @@
-// /scripts/leaderboard.js
-import { auth, db, collection, query, orderBy, limit, getDocs, onAuthStateChanged } from "./firebase-bridge.js";
+// /scripts/leaderboard.js (v9007)
+import {
+  db, collection, getDocs, query, orderBy, limit
+} from "/scripts/firebase-bridge.js?v=9007";
 
-const list = document.getElementById("leaderboardList");
-const FALLBACK_AVA = "/media/avatars/profile-default.svg";
+const LIST = document.getElementById("leaderboard");
 
-function rowTemplate(rank, user) {
-  const img = user.avatarUrl || user.avatarImg || FALLBACK_AVA; // optional precomputed URL
-  const emoji = user.emoji || "⭐";
-  const name = user.displayName || "Player";
-  const xp = Number(user.xp || 0).toLocaleString();
+async function render() {
+  try {
+    const q = query(collection(db, "leaderboard"), orderBy("xp", "desc"), limit(50));
+    const snap = await getDocs(q);
 
-  return `
-    <li class="lb-row">
-      <div class="lb-rank">${rank}</div>
-      <img class="lb-ava" src="${img}" alt="" />
-      <div class="lb-name">${emoji} ${name}</div>
-      <div class="lb-xp">${xp} XP</div>
-    </li>
-  `;
+    const frag = document.createDocumentFragment();
+    snap.forEach(doc => {
+      const d = doc.data();
+      const li = document.createElement("li");
+      li.className = "lb-row";
+      li.innerHTML = `
+        <span class="rank">#</span>
+        <span class="lb-name">${d.name ?? "Player"}</span>
+        <span class="lb-xp">${d.xp ?? 0} XP</span>
+        <img class="lb-ava" src="${d.avatar ?? "/media/avatars/default.png"}" alt="" />
+      `;
+      frag.appendChild(li);
+    });
+
+    LIST.innerHTML = "";
+    LIST.appendChild(frag);
+  } catch (e) {
+    console.error("[leaderboard] load failed:", e);
+    LIST.innerHTML = `<li class="lb-row">Failed to load leaderboard.</li>`;
+  }
 }
 
-async function loadTop() {
-  // Expect a "users" collection with xp counters. You can adapt to your schema.
-  const q = query(collection(db, "users"), orderBy("xp", "desc"), limit(100));
-  const snap = await getDocs(q);
-
-  const items = [];
-  let rank = 1;
-  snap.forEach(doc => {
-    const d = doc.data();
-    // Resolve avatar image: if you store just avatarId, map it to a path
-    const avatarId = d.avatarId || "fox-default";
-    const avatarImg = `/media/avatars/${avatarId}.png`;
-    items.push(rowTemplate(rank++, { ...d, avatarImg }));
-  });
-
-  list.innerHTML = items.join("");
-}
-
-onAuthStateChanged(auth, () => {
-  // Leaderboard can show even for signed-out users; no redirect needed.
-  loadTop().catch(err => {
-    console.error(err);
-    list.innerHTML = `<li class="lb-row">Could not load leaderboard.</li>`;
-  });
-});
+render();
