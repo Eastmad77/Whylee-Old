@@ -1,13 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="system">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Whylee â€“ Daily BrainBolt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Whylee – Daily BrainBolt</title>
 
-  <link rel="stylesheet" href="/styles/brand.css?v=9008"/>
-  <link rel="stylesheet" href="/styles/style.css?v=9008"/>
-  <link rel="stylesheet" href="/styles/animations.css?v=9008"/>
+  <link rel="stylesheet" href="/styles/brand.css?v=9010" />
+  <link rel="stylesheet" href="/styles/style.css?v=9010" />
+  <link rel="stylesheet" href="/styles/animations.css?v=9010" />
 </head>
 <body>
   <header class="site-header">
@@ -21,16 +21,22 @@
   </header>
 
   <main class="container">
-    <!-- Your existing homepage content here -->
     <h1>Daily BrainBolt</h1>
     <p>Sharpen your mind every day.</p>
+
+    <!-- Optional posters test hook (safe to keep/ignore) -->
+    <div id="posterMount" class="mt-2"></div>
   </main>
 
-  <!-- Firebase boot (ORDER MATTERS) -->
-  <script type="module" src="/scripts/firebase-config.js?v=9008"></script>
-  <script type="module" src="/scripts/firebase-bridge.js?v=9008"></script>
+  <footer>
+    <span id="app-version"></span>
+  </footer>
 
-  <!-- Page logic -->
-  <script type="module" src="/scripts/app.js?v=9008"></script>
+  <!-- Order matters -->
+  <script type="module" src="/scripts/firebase-config.js?v=9010"></script>
+  <script type="module" src="/scripts/firebase-bridge.js?v=9010"></script>
+  <script type="module" src="/scripts/app.js?v=9010"></script>
+  <!-- If index has its own logic, add here (optional)
+  <script type="module" src="/scripts/index.js?v=9010"></script> -->
 </body>
 </html>
