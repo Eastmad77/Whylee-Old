@@ -1,1 +1,97 @@
-﻿/** * Whylee Pro Subscription Client (v8) * Path: /scripts/pro.js * * Uses Firebase Functions endpoints: *  - POST /createCheckoutSession      (Functions) *  - Stripe webhook turns proStatus on server-side */import { auth } from "./auth/firebase-bridge.js";         // keep your existing pathing if differentimport { getUserDoc, setProEnabled } from "./auth/cloudsync.js";const FN_BASE =  // If hosted on Firebase Hosting, relative paths proxy to CF v2 by domain.  // If on Netlify, set NETLIFY_FN_BASE in env and pass full path.  window.NETLIFY_FN_BASE || "https://us-central1-dailybrainbolt.cloudfunctions.net";export async function getProStatus() {  const data = await getUserDoc();  return !!data?.proStatus;}/** * Start checkout with Stripe * @param {string} priceId Stripe Price ID * @param {Object} opts { successUrl?, cancelUrl? } */export async function startProCheckout(priceId, opts = {}) {  const user = auth.currentUser;  if (!user) throw new Error("Must be signed in");  const success_url = opts.successUrl || `${location.origin}/pro-success.html`;  const cancel_url  = opts.cancelUrl  || `${location.origin}/pro.html`;  const res = await fetch(`${FN_BASE}/createCheckoutSession`, {    method: "POST",    headers: { "Content-Type": "application/json" },    body: JSON.stringify({      uid: user.uid,      priceId,      success_url,      cancel_url    })  });  const json = await res.json();  if (!json.ok || !json.url) throw new Error(json.error || "Checkout error");  // Redirect to Stripe Hosted Checkout  location.href = json.url;}/** * Helper to reflect Pro state in UI immediately (optimistic), * while webhook will confirm server-side within seconds. */export async function markProOptimistic() {  try { await setProEnabled(true); } catch (_) {}}/** * Wire basic UI: *  - #goProBtn starts checkout *  - [data-pro-gate] elements toggle visibility by status */export function wireProUI({ priceId }) {  const btn = document.querySelector("#goProBtn");  if (btn) {    btn.addEventListener("click", () => startProCheckout(priceId).catch(err => alert(err.message)));  }  const gates = [...document.querySelectorAll("[data-pro-gate]")];  const render = async () => {    const isPro = await getProStatus();    gates.forEach(el => {      const mode = el.getAttribute("data-pro-gate"); // "pro-only" | "free-only"      const show = (mode === "pro-only") ? isPro : !isPro;      el.style.display = show ? "" : "none";    });  };  // run at start and when auth changes  render();  auth.onAuthStateChanged(render);}
+/**
+ * Whylee Pro Subscription Client (v9009)
+ * Path: /scripts/pro.js
+ */
+import { firebaseConfig } from "/scripts/firebase-config.js?v=9009";
+import {
+  auth,
+  onAuthStateChanged,
+  getIdTokenResult,
+  signOut,
+} from "/scripts/firebase-bridge.js?v=9009";
+import { isPro } from "/scripts/entitlements.js?v=9009";
+
+const els = {
+  status: document.getElementById("proStatus"),
+  btnManage: document.getElementById("btnManage"),
+  btnUpgrade: document.getElementById("btnUpgrade"),
+  planYearly: document.getElementById("planYearly"),
+  planMonthly: document.getElementById("planMonthly"),
+};
+
+function set(txt) {
+  if (els.status) els.status.textContent = txt;
+}
+
+async function createCheckoutSession(plan) {
+  set("Opening checkout…");
+  const res = await fetch("/.netlify/functions/create-checkout-session", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ plan }), // "monthly" | "yearly"
+  });
+  if (!res.ok) throw new Error("Checkout failed");
+  const { url } = await res.json();
+  window.location.href = url;
+}
+
+async function openPortal() {
+  set("Opening portal…");
+  const res = await fetch("/.netlify/functions/create-portal-session", {
+    method: "POST",
+  });
+  if (!res.ok) throw new Error("Portal failed");
+  const { url } = await res.json();
+  window.location.href = url;
+}
+
+function wireUI(uid) {
+  if (els.btnManage) {
+    els.btnManage.onclick = async () => {
+      try { await openPortal(); } catch (e) { console.warn(e); set("Portal error."); }
+    };
+  }
+  if (els.btnUpgrade) {
+    els.btnUpgrade.onclick = async () => {
+      try { await createCheckoutSession("monthly"); } catch (e) { console.warn(e); set("Checkout error."); }
+    };
+  }
+  if (els.planMonthly) {
+    els.planMonthly.onclick = async () => {
+      try { await createCheckoutSession("monthly"); } catch (e) { console.warn(e); set("Checkout error."); }
+    };
+  }
+  if (els.planYearly) {
+    els.planYearly.onclick = async () => {
+      try { await createCheckoutSession("yearly"); } catch (e) { console.warn(e); set("Checkout error."); }
+    };
+  }
+}
+
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    set("Please sign in to manage Whylee Pro.");
+    return;
+  }
+  wireUI(user.uid);
+
+  try {
+    const pro = await isPro(user.uid);
+    if (pro) {
+      set("You’re Whylee Pro ✓");
+      if (els.btnUpgrade) els.btnUpgrade.style.display = "none";
+      if (els.btnManage) els.btnManage.style.display = "inline-flex";
+    } else {
+      set("Unlock avatars & boosts with Whylee Pro.");
+      if (els.btnUpgrade) els.btnUpgrade.style.display = "inline-flex";
+      if (els.btnManage) els.btnManage.style.display = "none";
+    }
+
+    // (optional) show claims
+    const token = await getIdTokenResult(user, true);
+    console.debug("[pro] claims:", token.claims);
+  } catch (e) {
+    console.warn("[pro] error:", e);
+    set("Could not determine Pro status.");
+  }
+});
