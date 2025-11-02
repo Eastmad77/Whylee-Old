@@ -2,14 +2,14 @@
  * Whylee Pro Subscription Client (v9008)
  * Path: /scripts/pro.js
  */
-import { firebaseConfig } from "/scripts/firebase-config.js?v=9009";
+import { firebaseConfig } from "/scripts/firebase-config.js?v=9008";
 import {
   auth,
   onAuthStateChanged,
   getIdTokenResult,
   signOut,
-} from "/scripts/firebase-bridge.js?v=9009";
-import { isPro } from "/scripts/entitlements.js?v=9009";
+} from "/scripts/firebase-bridge.js?v=9008";
+import { isPro } from "/scripts/entitlements.js?v=9008";
 
 const els = {
   status: document.getElementById("proStatus"),
