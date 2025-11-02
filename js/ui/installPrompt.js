@@ -1,6 +1,6 @@
-/**
+﻿/**
  * Whylee installPrompt.js
- * Optional custom “Install” CTA you can place anywhere in your UI.
+ * Optional custom â€œInstallâ€ CTA you can place anywhere in your UI.
  * Adds/removes a CSS class on <body> to reveal an install banner.
  */
 

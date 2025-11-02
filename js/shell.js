@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Whylee shell.js (v7000)
  * - Hash router (home, tasks, about)
  * - Task list (localStorage) with basic CRUD
@@ -25,8 +25,8 @@
         <h2>Welcome to Whylee</h2>
         <p class="muted">Cinematic, offline-ready daily challenges.</p>
         <div class="kv" style="margin-top:10px">
-          <span class="badge">Service Worker</span><span id="sw-status">Checking…</span>
-          <span class="badge">Storage</span><span id="storage-info">–</span>
+          <span class="badge">Service Worker</span><span id="sw-status">Checkingâ€¦</span>
+          <span class="badge">Storage</span><span id="storage-info">â€“</span>
         </div>
       </section>
 
@@ -34,7 +34,7 @@
         <h2>Quick Tasks</h2>
         <div class="list">
           <div class="row">
-            <input id="task-input" type="text" placeholder="Add a task…"/>
+            <input id="task-input" type="text" placeholder="Add a taskâ€¦"/>
             <button id="task-add" class="primary">Add</button>
           </div>
           <div id="task-list" class="list" aria-live="polite"></div>
@@ -45,7 +45,7 @@
       <section class="card">
         <h2>Your Tasks</h2>
         <p class="muted">Synced locally. Works offline.</p>
-        <div class="row"><input id="task-filter" type="search" placeholder="Filter tasks…"/></div>
+        <div class="row"><input id="task-filter" type="search" placeholder="Filter tasksâ€¦"/></div>
         <div id="task-list" class="list" aria-live="polite"></div>
       </section>
     `,
@@ -56,7 +56,7 @@
         <ul>
           <li>Installable on mobile & desktop</li>
           <li>Offline fallback and cache-first shell</li>
-          <li>Privacy-first — data stays on device</li>
+          <li>Privacy-first â€” data stays on device</li>
         </ul>
       </section>
     `
@@ -65,7 +65,7 @@
   function render() {
     const hash = location.hash || '#/home';
     const view = routes[hash] ? routes[hash]() :
-      `<section class="card"><h2>Not found</h2><p class="muted">The view “${hash}” doesn’t exist.</p></section>`;
+      `<section class="card"><h2>Not found</h2><p class="muted">The view â€œ${hash}â€ doesnâ€™t exist.</p></section>`;
     app.innerHTML = view;
 
     // tab highlight

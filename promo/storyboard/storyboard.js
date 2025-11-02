@@ -1,4 +1,4 @@
-// Helper
+﻿// Helper
 const pad2 = n => String(n).padStart(2, '0');
 
 // Bases
@@ -22,11 +22,11 @@ const SCENES = [
 // Build columns
 const freeCol = document.createElement('div');
 freeCol.className = 'sb-col';
-freeCol.innerHTML = `<h2>Free — Cinematic Flow</h2><div class="sb-stack" id="stackFree"></div>`;
+freeCol.innerHTML = `<h2>Free â€” Cinematic Flow</h2><div class="sb-stack" id="stackFree"></div>`;
 
 const proCol = document.createElement('div');
 proCol.className = 'sb-col';
-proCol.innerHTML = `<h2>Pro — Cinematic Flow</h2><div class="sb-stack" id="stackPro"></div>`;
+proCol.innerHTML = `<h2>Pro â€” Cinematic Flow</h2><div class="sb-stack" id="stackPro"></div>`;
 
 document.getElementById('storyboardGrid').appendChild(freeCol);
 document.getElementById('storyboardGrid').appendChild(proCol);
@@ -41,7 +41,7 @@ const videoEl = document.createElement('video');
 const SUPPORTS_WEBM = !!videoEl.canPlayType && !!videoEl.canPlayType('video/webm; codecs="vp9,opus"');
 const SUPPORTS_MP4  = !!videoEl.canPlayType && !!videoEl.canPlayType('video/mp4');
 
-// HEADS-UP: we’ll create <video><source webm/><source mp4/></video> and let the browser pick.
+// HEADS-UP: weâ€™ll create <video><source webm/><source mp4/></video> and let the browser pick.
 // We also test URLs with HEAD to avoid 404s on hover.
 
 async function urlExists(url) {
@@ -71,7 +71,7 @@ function makeCard({ scene, index, isPro }) {
   const img = document.createElement('img');
   img.loading = 'lazy';
   img.decoding = 'async';
-  img.alt = `${isPro ? 'Pro' : 'Free'} storyboard scene ${pad2(index + 1)} — ${scene.name}`;
+  img.alt = `${isPro ? 'Pro' : 'Free'} storyboard scene ${pad2(index + 1)} â€” ${scene.name}`;
   img.src = `${baseThumb}/${scene.id}-thumb.jpg`;
   frame.appendChild(img);
 
@@ -94,7 +94,7 @@ function makeCard({ scene, index, isPro }) {
   label.appendChild(num); label.appendChild(name);
 
   const hint = document.createElement('span'); hint.className = 'sb-hint';
-  hint.textContent = 'Hover to preview · Click to expand';
+  hint.textContent = 'Hover to preview Â· Click to expand';
   meta.appendChild(label); meta.appendChild(hint);
 
   card.appendChild(frame); card.appendChild(meta);
@@ -103,9 +103,9 @@ function makeCard({ scene, index, isPro }) {
   let hasPlayable = false;
   let armed = false;
 
-  // We’ll probe sources (HEAD) once, then wire events
+  // Weâ€™ll probe sources (HEAD) once, then wire events
   (async () => {
-    // If browser can’t play either format, skip (keeps thumbnail only)
+    // If browser canâ€™t play either format, skip (keeps thumbnail only)
     if (!SUPPORTS_WEBM && !SUPPORTS_MP4) return;
 
     for (const s of sources) {
@@ -126,7 +126,7 @@ function makeCard({ scene, index, isPro }) {
     card.addEventListener('mouseleave', stopPreview);
     card.addEventListener('focusout', stopPreview);
 
-    // Click → modal
+    // Click â†’ modal
     card.addEventListener('click', () => openModalFor(scene.id, sources));
   })();
 

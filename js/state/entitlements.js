@@ -1,9 +1,9 @@
-// ============================================================================
-// state/entitlements.js — Firestore syncing + snapshot mapper
+﻿// ============================================================================
+// state/entitlements.js â€” Firestore syncing + snapshot mapper
 // -----------------------------------------------------------------------------
 // Purpose:
 // - Subscribes to a user's entitlement document in Firestore
-// - Normalizes data → imports into the central plan state (plan.js)
+// - Normalizes data â†’ imports into the central plan state (plan.js)
 // - Exposes helpers to write trial starts / pro activation / downgrades
 //
 // Requirements:
@@ -107,7 +107,7 @@ export async function startTrial(days = 3, startAt = Date.now()) {
 
 /**
  * activatePro
- * Sets plan to 'pro' (e.g., after Stripe webhook → Firestore write runs server-side).
+ * Sets plan to 'pro' (e.g., after Stripe webhook â†’ Firestore write runs server-side).
  * Safe to call from client if you want to mirror instant state (optional).
  */
 export async function activatePro() {

@@ -1,4 +1,4 @@
-// questions.js — inline demo set (36) so no CSV fetch needed
+﻿// questions.js â€” inline demo set (36) so no CSV fetch needed
 window.WhyleeQuestions = (function(){
   const L1 = Array.from({length:12}, (_,i)=>({
     Question:`Warm-up ${i+1}: 2 + ${i+1} = ?`,
@@ -6,7 +6,7 @@ window.WhyleeQuestions = (function(){
     Correct:0, Explanation:`Because 2 + ${i+1} = ${i+3}.`, Level:1
   }));
 
-  const flags = [["🇧🇷","Brazil"],["🇨🇦","Canada"],["🇪🇸","Spain"],["🇮🇹","Italy"],["🇯🇵","Japan"],["🇫🇷","France"]];
+  const flags = [["ðŸ‡§ðŸ‡·","Brazil"],["ðŸ‡¨ðŸ‡¦","Canada"],["ðŸ‡ªðŸ‡¸","Spain"],["ðŸ‡®ðŸ‡¹","Italy"],["ðŸ‡¯ðŸ‡µ","Japan"],["ðŸ‡«ðŸ‡·","France"]];
   const L2 = Array.from({length:12}, (_,i)=>({
     Question:`Match the pair: Which country uses this flag? ${flags[i%flags.length][0]}`,
     Answers:[flags[i%flags.length][1],"Germany","Norway","Chile"],
@@ -16,14 +16,14 @@ window.WhyleeQuestions = (function(){
   const L3 = [
     {Q:"Which planet is known as the Red Planet?", A:["Mars","Venus","Jupiter","Saturn"], E:"Iron oxide makes Mars look red."},
     {Q:"The largest ocean on Earth?", A:["Pacific","Atlantic","Indian","Arctic"], E:"The Pacific is the largest."},
-    {Q:"Speed of light is about…", A:["300,000 km/s","150,000 km/s","3,000 km/s","30,000 km/s"], E:"~3×10⁵ km/s."},
-    {Q:"H2O is…", A:["Water","Hydrogen","Oxygen","Salt"], E:"H₂O is water."},
-    {Q:"Primary source of Earth’s energy?", A:["Sun","Core","Moon","Tides"], E:"Solar radiation."},
+    {Q:"Speed of light is aboutâ€¦", A:["300,000 km/s","150,000 km/s","3,000 km/s","30,000 km/s"], E:"~3Ã—10âµ km/s."},
+    {Q:"H2O isâ€¦", A:["Water","Hydrogen","Oxygen","Salt"], E:"Hâ‚‚O is water."},
+    {Q:"Primary source of Earthâ€™s energy?", A:["Sun","Core","Moon","Tides"], E:"Solar radiation."},
     {Q:"Who painted the Mona Lisa?", A:["Leonardo da Vinci","Michelangelo","Raphael","Monet"], E:"Leonardo da Vinci."},
-    {Q:"DNA stands for…", A:["Deoxyribonucleic acid","Dicarboxylic nitro acid","Dinucleic amino acid","None"], E:"Deoxyribonucleic acid."},
+    {Q:"DNA stands forâ€¦", A:["Deoxyribonucleic acid","Dicarboxylic nitro acid","Dinucleic amino acid","None"], E:"Deoxyribonucleic acid."},
     {Q:"Capital of Canada?", A:["Ottawa","Toronto","Vancouver","Montreal"], E:"Ottawa."},
     {Q:"The chemical symbol for gold?", A:["Au","Ag","Gd","Go"], E:"Au."},
-    {Q:"Which gas do plants absorb?", A:["CO₂","O₂","N₂","H₂"], E:"Carbon dioxide."},
+    {Q:"Which gas do plants absorb?", A:["COâ‚‚","Oâ‚‚","Nâ‚‚","Hâ‚‚"], E:"Carbon dioxide."},
     {Q:"Largest mammal?", A:["Blue whale","Elephant","Giraffe","Hippo"], E:"Blue whale."},
     {Q:"Continent with the Sahara?", A:["Africa","Asia","Australia","South America"], E:"Africa."},
   ].map(x=>({Question:x.Q, Answers:x.A, Correct:0, Explanation:x.E, Level:3}));

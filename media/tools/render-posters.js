@@ -1,5 +1,5 @@
-/**
- * render-posters.js — Whylee Poster Automation Tool
+﻿/**
+ * render-posters.js â€” Whylee Poster Automation Tool
  * -----------------------------------------------
  * Generates motion or static composites from the poster set.
  * Requires Node 18+ and sharp.
@@ -26,13 +26,13 @@ if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
 const spec = JSON.parse(fs.readFileSync(specPath, "utf8"));
 
 (async () => {
-  console.log("🎬 Rendering Whylee cinematic posters...");
+  console.log("ðŸŽ¬ Rendering Whylee cinematic posters...");
 
   for (const item of spec.sequence) {
     const inputFile = path.join(postersDir, item.file);
     const outputFile = path.join(outputDir, item.output);
 
-    console.log(`→ Processing ${item.file} → ${item.output}`);
+    console.log(`â†’ Processing ${item.file} â†’ ${item.output}`);
 
     const composite = await sharp(inputFile)
       .composite([
@@ -66,9 +66,9 @@ const spec = JSON.parse(fs.readFileSync(specPath, "utf8"));
       .resize(1920, 1080)
       .jpeg({ quality: 95 })
       .toFile(path.join(outputDir, "poster-outro.jpg"));
-    console.log("🏁 Outro banner added: poster-outro.jpg");
+    console.log("ðŸ Outro banner added: poster-outro.jpg");
   }
 
-  console.log("✅ All posters rendered successfully!");
+  console.log("âœ… All posters rendered successfully!");
 })();
 

@@ -1,4 +1,4 @@
-// playVerify.js (ESM)
+﻿// playVerify.js (ESM)
 // Production-grade Google Play verification helpers for Whylee
 import admin from "firebase-admin";
 import { google } from "googleapis";

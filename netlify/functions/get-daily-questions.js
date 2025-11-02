@@ -1,4 +1,4 @@
-// netlify/functions/get-daily-questions.js
+﻿// netlify/functions/get-daily-questions.js
 export async function handler(event) {
   if (event.httpMethod === 'OPTIONS') {
     return { statusCode: 200, headers: cors(event), body: '' };

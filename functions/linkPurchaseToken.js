@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Whylee Cloud Function: linkPurchaseToken
  * ----------------------------------------
  * Creates or updates a link between a Google Play purchaseToken and a Whylee user UID.

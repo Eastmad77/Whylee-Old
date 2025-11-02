@@ -1,6 +1,6 @@
-// Shared Firebase Admin initializer for Netlify Functions
+﻿// Shared Firebase Admin initializer for Netlify Functions
 // Expects FIREBASE_SERVICE_ACCOUNT env var to be a **base64-encoded JSON key**
-// (Create a Service Account key in GCP → IAM → Keys → JSON, then base64 encode)
+// (Create a Service Account key in GCP â†’ IAM â†’ Keys â†’ JSON, then base64 encode)
 
 import admin from 'firebase-admin';
 

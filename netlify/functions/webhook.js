@@ -1,4 +1,4 @@
-// netlify/functions/webhook.js
+﻿// netlify/functions/webhook.js
 const json = (s, d, h = {}) => ({ statusCode: s, headers: { 'content-type': 'application/json; charset=utf-8', ...h }, body: JSON.stringify(d) });
 const cors = (e) => ({ 'Access-Control-Allow-Origin': e.headers?.origin || '*', 'Access-Control-Allow-Methods': 'POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Authorization' });
 

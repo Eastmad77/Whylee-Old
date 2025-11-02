@@ -1,4 +1,4 @@
-// /game/challenges.js
+﻿// /game/challenges.js
 // ------------------------------------------------------
 // Challenge Mode foundation
 // Allows rotating daily/weekly challenges and XP multipliers.

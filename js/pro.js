@@ -1,4 +1,4 @@
-/* Whylee — Pro / Upgrade client-side glue
+﻿/* Whylee â€” Pro / Upgrade client-side glue
    Path: /js/pro.js
    Note: This is the client UX. Real billing is handled server-side; here we simulate
    setting entitlements and redirecting after a successful checkout.
@@ -12,7 +12,7 @@ export function initProPage() {
   const $plans = document.querySelectorAll("[data-plan]");
   const $downgrade = document.querySelector('[data-pro="downgrade"]');
 
-  $status.textContent = isPro() ? "You’re on Whylee Pro ✨" : "You’re on Free";
+  $status.textContent = isPro() ? "Youâ€™re on Whylee Pro âœ¨" : "Youâ€™re on Free";
 
   $plans.forEach(btn => {
     btn.addEventListener("click", () => {
@@ -22,13 +22,13 @@ export function initProPage() {
       // For now we simulate success immediately:
       setEntitlement(tier);
       toast(`Upgraded to ${tier.replace("pro-", "Pro ").toUpperCase()}`);
-      $status.textContent = "You’re on Whylee Pro ✨";
+      $status.textContent = "Youâ€™re on Whylee Pro âœ¨";
     });
   });
 
   $downgrade?.addEventListener("click", () => {
     setEntitlement("free");
-    toast("You’re back on Free");
-    $status.textContent = "You’re on Free";
+    toast("Youâ€™re back on Free");
+    $status.textContent = "Youâ€™re on Free";
   });
 }

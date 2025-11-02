@@ -1,4 +1,4 @@
-/* service-worker.js — v9007 */
+﻿/* service-worker.js â€” v9007 */
 const VERSION = 'v9007';
 const RUNTIME = `whylee-${VERSION}`;
 

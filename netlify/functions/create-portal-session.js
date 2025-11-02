@@ -1,4 +1,4 @@
-// netlify/functions/create-portal-session.js
+﻿// netlify/functions/create-portal-session.js
 // Creates a Stripe Billing Portal session so users can manage/cancel.
 // Env: STRIPE_SECRET_KEY, SITE_URL, FIREBASE_SERVICE_ACCOUNT
 

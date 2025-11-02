@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 /**
  * render-posters.js
  * Generates visual previews for poster flows.
@@ -105,14 +105,14 @@ function sequencePage(json) {
 
 function main() {
   if (!fs.existsSync(SEQ_JSON)) {
-    console.error(`❌ poster-sequence.json not found at: ${relFromRoot(SEQ_JSON)}`);
+    console.error(`âŒ poster-sequence.json not found at: ${relFromRoot(SEQ_JSON)}`);
     process.exit(1);
   }
   const spec = readJSON(SEQ_JSON);
   ensureDir(OUT_DIR);
   fs.writeFileSync(path.join(OUT_DIR, "storyboard-grid.html"), gridPage(spec));
   fs.writeFileSync(path.join(OUT_DIR, "sequence-preview.html"), sequencePage(spec));
-  console.log("✅ Poster previews written to /promo/storyboard/");
+  console.log("âœ… Poster previews written to /promo/storyboard/");
 }
 
 main();

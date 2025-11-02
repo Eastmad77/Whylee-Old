@@ -1,5 +1,5 @@
-/**
- * gameRules.js — v7000
+﻿/**
+ * gameRules.js â€” v7000
  * Single source of truth for XP, streaks, badges, and pacing.
  */
 export const GameRules = {
@@ -18,7 +18,7 @@ export const GameRules = {
     perCorrect: 10,
     perLevelClearBonus: 50,
     perfectLevelBonus: 30,   // no wrongs at the level
-    dailyCompletionBonus: 40 // complete ≥1 level today
+    dailyCompletionBonus: 40 // complete â‰¥1 level today
   },
 
   // Streaks
@@ -27,7 +27,7 @@ export const GameRules = {
     lastDateKey: 'wl_last_date',
   },
 
-  // Badges unlock rules (id → predicate)
+  // Badges unlock rules (id â†’ predicate)
   badges: [
     { id: 'first_win',   name: 'First Win',    test: s => s.levelClears >= 1 },
     { id: 'seven_streak',name: '7 Day Streak', test: s => s.dayStreak >= 7 },

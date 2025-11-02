@@ -1,6 +1,6 @@
-/**
+﻿/**
  * ============================================================================
- * Whylee — UI / updatePrompt (enhanced v7000)
+ * Whylee â€” UI / updatePrompt (enhanced v7000)
  * ----------------------------------------------------------------------------
  * Add-ins:
  *  - Works even if the toast markup is missing (auto-creates)
@@ -12,7 +12,7 @@
  * Expected SW messages (v7000):
  *   postMessage({ type: 'NEW_VERSION', version: '7001' })
  *
- * Markup (optional — created dynamically if absent):
+ * Markup (optional â€” created dynamically if absent):
  *   <div id="update-toast" hidden> ... buttons with ids:
  *     btn-update-dismiss, btn-update-accept
  *   </div>
@@ -124,7 +124,7 @@ function setToastCopy(current, incoming) {
   if (incoming) {
     leftTitle.textContent = `New version available`;
     leftSub.textContent = current
-      ? `Installed: ${current} → Ready: ${incoming}. Tap Update to refresh.`
+      ? `Installed: ${current} â†’ Ready: ${incoming}. Tap Update to refresh.`
       : `Ready: ${incoming}. Tap Update to refresh.`;
     return;
   }
@@ -140,7 +140,7 @@ function readCurrentVersionFromLabel() {
   const { versionLabel } = els();
   if (!versionLabel) return null;
 
-  // Try to parse “Whylee v7000” or similar
+  // Try to parse â€œWhylee v7000â€ or similar
   const txt = (versionLabel.textContent || '').trim();
   const m = txt.match(/v(\d+)/i);
   return m ? m[1] : null;
@@ -164,7 +164,7 @@ async function acceptAndReload() {
     if (reg?.waiting) {
       reg.waiting.postMessage({ type: 'SKIP_WAITING' });
 
-      // When controller changes → new SW took control
+      // When controller changes â†’ new SW took control
       const onChange = () => {
         navigator.serviceWorker.removeEventListener('controllerchange', onChange);
         // tiny delay avoids cache race
@@ -224,7 +224,7 @@ function listenForBroadcasts() {
       log('Broadcast NEW_VERSION', incomingVersion || '(no version)');
       setToastCopy(readCurrentVersionFromLabel(), incomingVersion);
 
-      // Avoid re-prompt if we’ve already acknowledged this version
+      // Avoid re-prompt if weâ€™ve already acknowledged this version
       const seen = lastSeen();
       if (incomingVersion && seen && seen === String(incomingVersion)) {
         log('Version already acknowledged; suppressing toast.');

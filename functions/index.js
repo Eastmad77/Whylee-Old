@@ -1,4 +1,4 @@
-import * as functions from "firebase-functions";
+﻿import * as functions from "firebase-functions";
 import admin from "firebase-admin";
 import express from "express";
 import cors from "cors";
@@ -122,7 +122,7 @@ stripeApp.post("/", express.raw({ type: "application/json" }), async (req, res) 
 });
 export const stripeWebhook = functions.https.onRequest(stripeApp);
 
-// ====== Map Play purchaseToken → uid (from app after purchase) ======
+// ====== Map Play purchaseToken â†’ uid (from app after purchase) ======
 export const linkPurchaseToken = functions.https.onRequest(async (req, res) => {
   res.set("Access-Control-Allow-Origin", req.headers.origin || "*");
   res.set("Access-Control-Allow-Methods", "POST, OPTIONS");
@@ -206,7 +206,7 @@ export const playBillingRtdn = functions.pubsub.topic("play-billing").onPublish(
 
     let result;
     if (sub) {
-      // Subscription → verify with SubscriptionsV2
+      // Subscription â†’ verify with SubscriptionsV2
       result = await verifyPlaySubscription({ packageName, purchaseToken });
     } else {
       // One-time product

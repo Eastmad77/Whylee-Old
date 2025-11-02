@@ -1,4 +1,4 @@
-/* Whylee — Daily Reflection
+﻿/* Whylee â€” Daily Reflection
    Path: /js/reflection.js
 */
 import { isPro, toast } from "./app.js";
@@ -11,7 +11,7 @@ const PROMPTS = [
   "What am I grateful for right now?",
   "What challenged me? How did I respond?",
   "Which tiny win am I proud of?",
-  "What’s one thing I’ll do better tomorrow?"
+  "Whatâ€™s one thing Iâ€™ll do better tomorrow?"
 ];
 
 function todayISO() {

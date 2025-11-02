@@ -1,5 +1,5 @@
-// ============================================================================
-// Whylee — Stripe Billing Helper (client-side)
+﻿// ============================================================================
+// Whylee â€” Stripe Billing Helper (client-side)
 // Handles 3-day Pro trial and standard subscription checkout flow via Netlify.
 // ============================================================================
 

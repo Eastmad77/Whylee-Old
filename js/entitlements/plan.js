@@ -1,5 +1,5 @@
-// ============================================================================
-// entitlements/plan.js — Central entitlement state manager
+﻿// ============================================================================
+// entitlements/plan.js â€” Central entitlement state manager
 // -----------------------------------------------------------------------------
 // Provides one source of truth for determining user access level and Pro status.
 // Integrates with Firebase Auth + Firestore + Stripe or Play Billing snapshot.

@@ -1,4 +1,4 @@
-// /theme/theme.js
+﻿// /theme/theme.js
 export const ThemeManager = {
   init() {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;

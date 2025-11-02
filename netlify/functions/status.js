@@ -1,4 +1,4 @@
-// netlify/functions/status.js
+﻿// netlify/functions/status.js
 export async function handler() {
   return {
     statusCode: 200,

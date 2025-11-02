@@ -1,9 +1,9 @@
-// /scripts/leaderboard.js  — v9007 (safe, no-blank UI)
+﻿// /scripts/leaderboard.js  â€” v9007 (safe, no-blank UI)
 
-// 🔗 Absolute imports so Netlify rewrites never break modules
+// ðŸ”— Absolute imports so Netlify rewrites never break modules
 import {
   db, collection, getDocs, query, orderBy, limit
-} from "/scripts/firebase-bridge.js?v=9007";
+} from "/scripts/firebase-bridge.js?v=9008";
 
 // ---------- Tiny DOM helpers ----------
 function ensureContainer() {
@@ -81,7 +81,7 @@ async function loadLeaderboard() {
   const { list, status } = ensureContainer();
 
   try {
-    status.textContent = "Loading…";
+    status.textContent = "Loadingâ€¦";
     // Collection can be either `leaderboard` (array docs) or `users` (with xp field)
     // Try `leaderboard` first, fall back to `users`
     let rows = [];
@@ -128,7 +128,7 @@ async function loadLeaderboard() {
     if (String(err?.message || err).includes("Missing or insufficient permissions")) {
       status.textContent = "Leaderboard is temporarily unavailable (permissions). Please sign in or try again later.";
     } else {
-      status.textContent = "Couldn’t load leaderboard. Please refresh.";
+      status.textContent = "Couldnâ€™t load leaderboard. Please refresh.";
     }
   }
 }

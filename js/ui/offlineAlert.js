@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Whylee offlineAlert.js
  * Displays a subtle banner when offline; hides when back online.
  * Requires the CSS below added to your stylesheet (see comment).
@@ -7,7 +7,7 @@
 (() => {
   const bar = document.createElement('div');
   bar.className = 'netbar';
-  bar.textContent = 'You are offline — some features may be unavailable.';
+  bar.textContent = 'You are offline â€” some features may be unavailable.';
   document.body.appendChild(bar);
 
   const apply = () => {

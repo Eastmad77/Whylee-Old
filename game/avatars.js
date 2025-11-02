@@ -1,4 +1,4 @@
-// /game/avatars.js
+﻿// /game/avatars.js
 export const Avatars = {
   free: {
     default: { mascot: "/media/avatars/fox-default.png" },

@@ -1,13 +1,13 @@
-/**
- * game/core.js — v7000
- * Core loop for Levels 1–3, XP, streaks, posters, SFX, timers.
+﻿/**
+ * game/core.js â€” v7000
+ * Core loop for Levels 1â€“3, XP, streaks, posters, SFX, timers.
  *
  * Expected DOM ids (lightweight):
  *  - #quizLayer, #questionBox, #choices, #progressLabel, #elapsedTime, #qTimerBar
  *  - #streakFill, #streakLabel, #levelLabel
  *  - #countdownOverlay, #countNum
  *  - #perfectBurst, #sfxPerfect (audio)
- *  - #heroPoster (img)  — optional, swaps per level
+ *  - #heroPoster (img)  â€” optional, swaps per level
  *  - Start/controls: #btnStart, #btnHow, #btnResume, #btnReset, #btnQuit
  *  - #gameOverBox, #gameOverText, #playAgainBtn, #shareBtn, #shuffleBtn
  */
@@ -173,7 +173,7 @@ function showQuestion(){
       return;
     }
 
-    // all done — session complete
+    // all done â€” session complete
     state.running = false;
     clearTimeout(state.timerHandle);
     markTodayComplete();
@@ -181,7 +181,7 @@ function showQuestion(){
     const over = $('#gameOverBox');
     if (over) over.hidden = false;
     const txt = $('#gameOverText');
-    if (txt) txt.textContent = 'All levels complete — see you tomorrow!';
+    if (txt) txt.textContent = 'All levels complete â€” see you tomorrow!';
     return;
   }
 
@@ -325,7 +325,7 @@ function onQuit(){
     state.qIndex = 0; showQuestion();
   });
   $('#shareBtn')?.addEventListener('click', ()=>{
-    const txt = `I’m playing Whylee! Day streak: ${getDailyStreak()} — try it: ${location.origin}`;
+    const txt = `Iâ€™m playing Whylee! Day streak: ${getDailyStreak()} â€” try it: ${location.origin}`;
     if (navigator.share){ navigator.share({title:'Whylee', text:txt, url:location.origin}).catch(()=>{}); }
     else { prompt('Copy link', location.origin); }
   });

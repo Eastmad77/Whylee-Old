@@ -1,4 +1,4 @@
-/* Whylee — Core App Utilities (routing-lite, state, avatars, entitlements)
+﻿/* Whylee â€” Core App Utilities (routing-lite, state, avatars, entitlements)
    Path: /js/app.js
 */
 const LS = {

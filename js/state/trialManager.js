@@ -1,4 +1,4 @@
-
+﻿
 // /state/trialManager.js
 // ------------------------------------------------------
 // TrialManager: controls Whylee Pro trial flow.

@@ -1,4 +1,4 @@
-const json = (s, d, h = {}) => ({ statusCode: s, headers: { "content-type": "application/json", ...h }, body: JSON.stringify(d) });
+﻿const json = (s, d, h = {}) => ({ statusCode: s, headers: { "content-type": "application/json", ...h }, body: JSON.stringify(d) });
 const allowOrigin = (e) => e.headers.origin || "*";
 const cors = (e) => ({ "Access-Control-Allow-Origin": allowOrigin(e), "Access-Control-Allow-Headers": "authorization,content-type", "Access-Control-Allow-Methods": "GET,POST,OPTIONS" });
 

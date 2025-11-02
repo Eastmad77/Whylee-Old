@@ -1,5 +1,5 @@
-/**
- * questions.js — v7000
+﻿/**
+ * questions.js â€” v7000
  * Loads daily questions from CSV (media/questions/*.csv) with fallback seed.
  * Exported API:
  *   loadQuestionsForToday() -> Promise<Question[]>

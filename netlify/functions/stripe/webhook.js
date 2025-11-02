@@ -1,11 +1,11 @@
-// ============================================================================
+﻿// ============================================================================
 // Netlify Function: Stripe Webhook (subscription lifecycle events)
 // ----------------------------------------------------------------------------
-// Set these in Netlify → Site settings → Environment:
+// Set these in Netlify â†’ Site settings â†’ Environment:
 //   STRIPE_SECRET_KEY
 //   STRIPE_WEBHOOK_SECRET
 //
-// Add this endpoint in Stripe Dashboard → Developers → Webhooks:
+// Add this endpoint in Stripe Dashboard â†’ Developers â†’ Webhooks:
 //   https://<your-site>/.netlify/functions/stripe/webhook
 //
 // IMPORTANT (Netlify):

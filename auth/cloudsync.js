@@ -1,4 +1,4 @@
-// /auth/cloudsync.js
+﻿// /auth/cloudsync.js
 import { db, auth } from "../firebase.js";
 
 export const CloudSync = {

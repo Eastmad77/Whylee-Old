@@ -1,12 +1,12 @@
-// ============================================================================
-// Whylee — Play Billing Bridge (for Android Trusted Web Activity - TWA)
+﻿// ============================================================================
+// Whylee â€” Play Billing Bridge (for Android Trusted Web Activity - TWA)
 // ============================================================================
 //
 // Purpose:
 // Provides compatibility for Android users who install Whylee from Google Play.
 // The host Android shell (TWA wrapper) injects a JS bridge object:
 //   window.WhyleePlayBridge
-// which exposes a function buyTrial(sku) → Promise<{ ok, token, expiry, error }>
+// which exposes a function buyTrial(sku) â†’ Promise<{ ok, token, expiry, error }>
 // ============================================================================
 
 // Check if the Android Play Billing bridge is present
@@ -21,7 +21,7 @@ export async function startAndroidTrialPurchase({ sku = 'whylee_pro_trial' } = {
   }
 
   // Expected native implementation:
-  //   buyTrial(sku) → { ok, token, expiry, error }
+  //   buyTrial(sku) â†’ { ok, token, expiry, error }
   const res = await window.WhyleePlayBridge.buyTrial(sku);
   if (!res?.ok) {
     throw new Error(res?.error || 'Trial purchase failed');

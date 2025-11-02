@@ -1,4 +1,4 @@
-// /game/bonusRounds.js
+﻿// /game/bonusRounds.js
 import { isPro } from "../pro.js";
 
 export const BonusRounds = {
