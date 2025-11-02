@@ -1,18 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="system">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sprite Test â€“ Whylee</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sprite Test – Whylee</title>
 
-  <link rel="stylesheet" href="/styles/brand.css?v=9008" />
-  <link rel="stylesheet" href="/styles/style.css?v=9008" />
-  <link rel="stylesheet" href="/styles/animations.css?v=9008" />
+  <link rel="stylesheet" href="/styles/brand.css?v=9010" />
+  <link rel="stylesheet" href="/styles/style.css?v=9010" />
+  <link rel="stylesheet" href="/styles/animations.css?v=9010" />
   <style>
-    .sprite-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:16px}
-    .sprite-tile{background:var(--card);border-radius:12px;padding:12px;text-align:center;box-shadow:var(--shadow-sm)}
-    .sprite-tile img{width:96px;height:96px;object-fit:contain}
-    .sprite-tile .name{font-size:.85rem;margin-top:6px;color:var(--muted)}
+    .sheet { display:grid; gap:12px; grid-template-columns: repeat(auto-fill,minmax(160px,1fr)); }
+    .tile { border:1px solid var(--card-border); border-radius:12px; padding:12px; background:var(--bg-surface); box-shadow: var(--shadow); }
+    .tile img { width:100%; height:auto; border-radius:8px; }
   </style>
 </head>
 <body>
@@ -22,38 +21,24 @@
       <a href="/menu.html">Menu</a>
       <a href="/leaderboard.html">Leaderboard</a>
       <a href="/profile.html">Profile</a>
+      <a href="/pro.html">Pro</a>
     </nav>
   </header>
 
   <main class="container">
-    <h1>Sprite & Avatar Test</h1>
-    <p class="muted">Quick visual check for avatar and icon assets.</p>
-
-    <section class="card">
-      <h2>Avatars</h2>
-      <div id="avatarGrid" class="sprite-grid"></div>
-    </section>
-
-    <section class="card">
-      <h2>Icons</h2>
-      <div class="sprite-grid">
-        <div class="sprite-tile">
-          <img src="/media/icons/app-icon.svg" alt="App Icon" />
-          <div class="name">app-icon.svg</div>
-        </div>
-        <div class="sprite-tile">
-          <img src="/media/icons/favicon-96.png" alt="Favicon 96" />
-          <div class="name">favicon-96.png</div>
-        </div>
-      </div>
-    </section>
+    <div class="card">
+      <h1 class="h2">Sprite / Posters Test</h1>
+      <p class="muted">Ensures assets load under CSP and SW.</p>
+      <div id="spriteGrid" class="sheet mt-2"></div>
+    </div>
   </main>
 
-  <!-- Firebase (optional for this page, but safe) -->
-  <script type="module" src="/scripts/firebase-config.js?v=9008"></script>
-  <script type="module" src="/scripts/firebase-bridge.js?v=9008"></script>
+  <footer><span id="app-version"></span></footer>
 
-  <!-- Page logic loads avatars from /media/avatars/avatars.json -->
-  <script type="module" src="/scripts/tests/sprite-test.js?v=9008"></script>
+  <script type="module" src="/scripts/firebase-config.js?v=9010"></script>
+  <script type="module" src="/scripts/firebase-bridge.js?v=9010"></script>
+  <script type="module" src="/scripts/app.js?v=9010"></script>
+  <script type="module" src="/scripts/posters.js?v=9010"></script>
+  <script type="module" src="/scripts/sprite-test.js?v=9010"></script>
 </body>
 </html>
