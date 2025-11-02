@@ -1,1 +1,70 @@
-﻿// /scripts/app.js  â€” v9007(() => {  const VERSION = '9007';  // stamp version if you have a footer span#app-version  const vLabel = document.getElementById('app-version');  if (vLabel) vLabel.textContent = `v${VERSION}`;  // online/offline class  function setNetClass() {    document.body.classList.toggle('is-offline', !navigator.onLine);  }  window.addEventListener('online', setNetClass);  window.addEventListener('offline', setNetClass);  setNetClass();  // Service Worker  if ('serviceWorker' in navigator) {    navigator.serviceWorker.register('/service-worker.js?v=' + VERSION, { scope: '/' })      .catch(err => console.warn('[SW] register failed', err));    const promptEl = document.getElementById('updatePrompt');    const btnNow   = document.getElementById('btnUpdateNow');    const btnLater = document.getElementById('btnUpdateLater');    const showPrompt = () => promptEl && (promptEl.style.display = 'block');    const hidePrompt = () => promptEl && (promptEl.style.display = 'none');    if ('BroadcastChannel' in window) {      const ch = new BroadcastChannel('whylee-sw');      ch.onmessage = (ev) => {        if (ev?.data === 'NEW_VERSION') showPrompt();      };    }    if (btnNow) {      btnNow.addEventListener('click', async () => {        hidePrompt();        const regs = await navigator.serviceWorker.getRegistrations();        regs.forEach(r => r.update());        location.reload();      });    }    if (btnLater) btnLater.addEventListener('click', hidePrompt);  }  // Optional install prompt hookup  const btnInstall = document.getElementById('btn-install');  if (btnInstall && window.WhyleeInstall) {    window.addEventListener('beforeinstallprompt', (e) => {      e.preventDefault();      window.WhyleeInstall.setEvent(e);      btnInstall.hidden = false;      btnInstall.addEventListener('click', () => window.WhyleeInstall.confirm());    });  }  const btnRefresh = document.getElementById('btn-refresh');  if (btnRefresh) btnRefresh.addEventListener('click', () => location.reload());  const btnMenu = document.getElementById('btn-menu');  if (btnMenu) btnMenu.addEventListener('click', () => document.body.classList.toggle('menu-open'));})();
+// /scripts/app.js — v9010 (feature-complete)
+(() => {
+  const VERSION = "9010";
+
+  // Stamp version in footer if you have <span id="app-version">
+  const vLabel = document.getElementById("app-version");
+  if (vLabel) vLabel.textContent = `v${VERSION}`;
+
+  // Online/offline body class
+  function setNetClass() {
+    document.body.classList.toggle("is-offline", !navigator.onLine);
+  }
+  addEventListener("online", setNetClass);
+  addEventListener("offline", setNetClass);
+  setNetClass();
+
+  // Service Worker registration + update prompt
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register(`/service-worker.js?v=${VERSION}`, { scope: "/" })
+      .catch(err => console.warn("[SW] register failed", err));
+
+    // Optional update prompt elements
+    const promptEl = document.getElementById("updatePrompt");
+    const btnNow   = document.getElementById("btnUpdateNow");
+    const btnLater = document.getElementById("btnUpdateLater");
+
+    const showPrompt = () => { if (promptEl) promptEl.style.display = "block"; };
+    const hidePrompt = () => { if (promptEl) promptEl.style.display = "none"; };
+
+    // Listen for NEW_VERSION broadcast from the SW
+    if ("BroadcastChannel" in window) {
+      const ch = new BroadcastChannel("whylee-sw");
+      ch.onmessage = (ev) => {
+        if (ev?.data === "NEW_VERSION") showPrompt();
+      };
+    }
+
+    if (btnNow) {
+      btnNow.addEventListener("click", async () => {
+        hidePrompt();
+        try {
+          const regs = await navigator.serviceWorker.getRegistrations();
+          await Promise.all(regs.map(r => r.update()));
+        } catch (e) {
+          console.warn("[SW] update()", e);
+        }
+        // Hard reload to pick up new cache
+        location.reload();
+      });
+    }
+    if (btnLater) btnLater.addEventListener("click", hidePrompt);
+  }
+
+  // Optional PWA install prompt integration (if you expose window.WhyleeInstall)
+  const btnInstall = document.getElementById("btn-install");
+  if (btnInstall && window.WhyleeInstall) {
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      window.WhyleeInstall.setEvent(e);
+      btnInstall.hidden = false;
+      btnInstall.addEventListener("click", () => window.WhyleeInstall.confirm());
+    });
+  }
+
+  // Optional refresh & menu hooks
+  document.getElementById("btn-refresh")?.addEventListener("click", () => location.reload());
+  document.getElementById("btn-menu")?.addEventListener("click",
+    () => document.body.classList.toggle("menu-open"));
+})();
