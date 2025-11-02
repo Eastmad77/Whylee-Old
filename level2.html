@@ -1,49 +1,38 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="system">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Level 2 â€“ Memory Match â€¢ Whylee</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Level 2 – Whylee</title>
 
-  <link rel="stylesheet" href="/styles/brand.css?v=9008" />
-  <link rel="stylesheet" href="/styles/style.css?v=9008" />
-  <link rel="stylesheet" href="/styles/level2.css?v=9008" />
-  <link rel="stylesheet" href="/styles/animations.css?v=9008" />
+  <link rel="stylesheet" href="/styles/brand.css?v=9010" />
+  <link rel="stylesheet" href="/styles/style.css?v=9010" />
+  <link rel="stylesheet" href="/styles/animations.css?v=9010" />
 </head>
 <body>
   <header class="site-header">
     <a class="brand" href="/index.html">Whylee</a>
     <nav class="nav">
-      <a href="/game.html">Game</a>
+      <a href="/menu.html">Menu</a>
       <a href="/leaderboard.html">Leaderboard</a>
       <a href="/profile.html">Profile</a>
+      <a href="/pro.html">Pro</a>
     </nav>
   </header>
 
   <main class="container">
-    <section class="hud card">
-      <div class="hud-left">
-        <span id="timer" class="pill">00:00</span>
-        <span id="moves" class="pill">Moves: 0</span>
-      </div>
-      <div class="hud-right">
-        <button id="btnRestart" class="btn">Restart</button>
-      </div>
-    </section>
-
-    <section class="card">
-      <div id="board" class="mm-board" aria-live="polite"></div>
-    </section>
+    <div class="card">
+      <h1 class="h2">Level 2</h1>
+      <p class="muted">Wiring for expanded challenge flow.</p>
+      <div id="level2Mount" class="mt-2"></div>
+    </div>
   </main>
 
-  <!-- Optional poster overlay support -->
-  <script type="module" src="/scripts/posters.js?v=9008"></script>
+  <footer><span id="app-version"></span></footer>
 
-  <!-- Firebase boot (ORDER MATTERS) -->
-  <script type="module" src="/scripts/firebase-config.js?v=9008"></script>
-  <script type="module" src="/scripts/firebase-bridge.js?v=9008"></script>
-
-  <!-- Level 2 mode logic -->
-  <script type="module" src="/scripts/modes/memoryMatch.js?v=9008"></script>
+  <script type="module" src="/scripts/firebase-config.js?v=9010"></script>
+  <script type="module" src="/scripts/firebase-bridge.js?v=9010"></script>
+  <script type="module" src="/scripts/app.js?v=9010"></script>
+  <script type="module" src="/scripts/level2.js?v=9010"></script>
 </body>
 </html>
