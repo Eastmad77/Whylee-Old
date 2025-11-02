@@ -3,7 +3,7 @@
 // ðŸ”— Absolute imports so Netlify rewrites never break modules
 import {
   db, collection, getDocs, query, orderBy, limit
-} from "/scripts/firebase-bridge.js?v=9008";
+} from "/scripts/firebase-bridge.js?v=9010";
 
 // ---------- Tiny DOM helpers ----------
 function ensureContainer() {
