@@ -1,5 +1,5 @@
 /**
- * Whylee Pro Subscription Client (v9009)
+ * Whylee Pro Subscription Client (v9008)
  * Path: /scripts/pro.js
  */
 import { firebaseConfig } from "/scripts/firebase-config.js?v=9009";
