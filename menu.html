@@ -1,19 +1,19 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="system">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Menu â€“ Whylee</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Menu – Whylee</title>
 
-  <link rel="stylesheet" href="/styles/brand.css?v=9008"/>
-  <link rel="stylesheet" href="/styles/style.css?v=9008"/>
-  <link rel="stylesheet" href="/styles/animations.css?v=9008"/>
+  <link rel="stylesheet" href="/styles/brand.css?v=9010" />
+  <link rel="stylesheet" href="/styles/style.css?v=9010" />
+  <link rel="stylesheet" href="/styles/animations.css?v=9010" />
 </head>
 <body>
   <header class="site-header">
     <a class="brand" href="/index.html">Whylee</a>
     <nav class="nav">
-      <a href="/index.html">Home</a>
+      <a href="/menu.html" aria-current="page">Menu</a>
       <a href="/leaderboard.html">Leaderboard</a>
       <a href="/profile.html">Profile</a>
       <a href="/pro.html">Pro</a>
@@ -21,12 +21,25 @@
   </header>
 
   <main class="container">
-    <!-- Your existing menu markup -->
-    <h1>Choose a Mode</h1>
+    <div class="card">
+      <h1 class="h2">Main Menu</h1>
+      <ul class="mt-2">
+        <li><a class="btn btn--brand mt-2" href="/game.html">Play Daily Game</a></li>
+        <li><a class="btn btn--ghost mt-2" href="/leaderboard.html">View Leaderboard</a></li>
+        <li><a class="btn btn--ghost mt-2" href="/profile.html">Profile & Avatars</a></li>
+        <li><a class="btn btn--ghost mt-2" href="/pro.html">Go Pro</a></li>
+      </ul>
+    </div>
   </main>
 
-  <script type="module" src="/scripts/firebase-config.js?v=9008"></script>
-  <script type="module" src="/scripts/firebase-bridge.js?v=9008"></script>
-  <script type="module" src="/scripts/menu.js?v=9008"></script>
+  <footer>
+    <span id="app-version"></span>
+  </footer>
+
+  <!-- Order matters -->
+  <script type="module" src="/scripts/firebase-config.js?v=9010"></script>
+  <script type="module" src="/scripts/firebase-bridge.js?v=9010"></script>
+  <script type="module" src="/scripts/app.js?v=9010"></script>
+  <script type="module" src="/scripts/menu.js?v=9010"></script>
 </body>
 </html>
