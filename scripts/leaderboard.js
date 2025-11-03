@@ -1,4 +1,4 @@
-﻿// /scripts/leaderboard.js  â€” v9007 (safe, no-blank UI)
+﻿// /scripts/leaderboard.js  â€” v9010 (safe, no-blank UI)
 
 // ðŸ”— Absolute imports so Netlify rewrites never break modules
 import {
