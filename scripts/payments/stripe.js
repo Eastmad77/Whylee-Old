@@ -1,8 +1,8 @@
 // /scripts/payments/stripe.js — v9010
 import { Entitlements } from "/scripts/entitlements.js?v=9010";
 
-// Expose this in HTML or via a small config script tag.
-// <script>window.WHYLEE_STRIPE_PK="pk_live_xxx"</script>
+// Expose this in HTML or small config script:
+//   <script>window.WHYLEE_STRIPE_PK="pk_live_xxx"</script>
 const STRIPE_PK = window.WHYLEE_STRIPE_PK || "pk_test_REPLACE_ME";
 
 export async function startStripeCheckout() {
@@ -20,7 +20,7 @@ export async function startStripeCheckout() {
   }
 }
 
-// TODO: replace with your Netlify Function endpoint that returns { id }
+// TODO: call your Netlify Function; must return { id: "cs_..." }
 async function createCheckoutSession() {
   return { id: "DUMMY_SESSION_ID" };
 }
