@@ -1,121 +1,41 @@
-/* Whylee – Brand & Theme Tokens (v8)
-   Replaces older brand.css, adds theme variables & font defaults
-   Integrates with ThemeManager (theme.js)
-*/
+/* Whylee – Brand Theme (v9010) */
 
 :root {
-  /* Brand colours */
-  --whylee-blue: #2f7cff;
-  --whylee-gold: #f5d36b;
-  --whylee-lime: #d8ff72;
-  --whylee-cyan: #33e1ff;
-
-  /* Base palette */
-  --whylee-bg: #0a0e17;
-  --whylee-surface: #111727;
-  --whylee-panel: #141c2d;
-  --whylee-edge: #1a263b;
-
-  /* Text */
-  --whylee-text: #e6ecf6;
-  --whylee-text-muted: #b5bfd2;
-
-  /* Accent gradients */
-  --whylee-gradient-blue: linear-gradient(135deg, #2f7cff, #33e1ff);
-  --whylee-gradient-gold: linear-gradient(135deg, #f5d36b, #ffdf87);
-
-  /* Font family */
-  --whylee-font: "Inter", "Avenir Next", "Segoe UI", Roboto, system-ui, sans-serif;
-
-  /* Radius, shadows */
-  --whylee-radius: 14px;
-  --whylee-shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.25);
-  --whylee-shadow-hard: 0 8px 24px rgba(0, 0, 0, 0.35);
-
-  /* Transition speed */
-  --whylee-speed: 0.25s;
+  --brand: #3AAE4D;        /* main Whylee green */
+  --brand-light: #4cc26b;
+  --brand-dark: #2b8a3d;
+  --accent: #4AA1FF;       /* secondary blue accent */
+  --accent-dark: #2E7AE6;
+  --warning: #f7c948;
+  --error: #e94d4d;
+  --success: #41d67a;
+  --bg-dark: #0B0F14;
+  --text-light: #f5f8fa;
+  --muted: #9eaaba;
 }
 
-/* Light theme override */
-[data-theme="light"] {
-  --whylee-bg: #f6f8fd;
-  --whylee-surface: #ffffff;
-  --whylee-panel: #f0f3fa;
-  --whylee-edge: #d6dce8;
-  --whylee-text: #0a0e17;
-  --whylee-text-muted: #475068;
+/* Gradient backgrounds */
+.bg-gradient {
+  background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
+  color: white;
 }
 
-/* Dark theme override */
-[data-theme="dark"] {
-  --whylee-bg: #0a0e17;
-  --whylee-surface: #111727;
-  --whylee-panel: #141c2d;
-  --whylee-edge: #1a263b;
-  --whylee-text: #e6ecf6;
-  --whylee-text-muted: #b5bfd2;
-}
-
-/* Typography defaults */
-body {
-  background: var(--whylee-bg);
-  color: var(--whylee-text);
-  font-family: var(--whylee-font);
-  line-height: 1.5;
-  transition: background var(--whylee-speed), color var(--whylee-speed);
-}
-
-/* Headings */
-h1, h2, h3, h4 {
-  font-weight: 600;
-  color: var(--whylee-text);
-}
-
-/* Buttons */
-button,
-.btn-primary {
-  background: var(--whylee-gradient-blue);
+.btn-brand {
+  background: var(--brand);
   color: #fff;
   border: none;
-  border-radius: var(--whylee-radius);
-  padding: 10px 18px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 700;
   cursor: pointer;
-  font-weight: 600;
-  transition: transform var(--whylee-speed), opacity var(--whylee-speed);
+  transition: all 0.2s ease;
 }
-button:hover,
-.btn-primary:hover {
-  opacity: 0.9;
+.btn-brand:hover {
+  background: var(--brand-light);
   transform: translateY(-1px);
 }
 
-/* Cards / Panels */
-.card {
-  background: var(--whylee-panel);
-  border: 1px solid var(--whylee-edge);
-  border-radius: var(--whylee-radius);
-  box-shadow: var(--whylee-shadow-soft);
-  transition: background var(--whylee-speed);
-}
-
-/* Links */
-a {
-  color: var(--whylee-blue);
-  text-decoration: none;
-  transition: opacity var(--whylee-speed);
-}
-a:hover { opacity: 0.85; }
-
-/* Utility */
-.muted { color: var(--whylee-text-muted); }
-.hr-soft { border-color: var(--whylee-edge); opacity: 0.5; }
-
-/* Theme toggle button (optional) */
-.theme-toggle {
-  background: transparent;
-  border: 1px solid var(--whylee-edge);
-  border-radius: 999px;
-  padding: 6px 12px;
-  color: var(--whylee-text);
-  cursor: pointer;
-}
+/* Accent utilities */
+.text-brand { color: var(--brand); }
+.text-accent { color: var(--accent); }
+.border-brand { border-color: var(--brand); }
