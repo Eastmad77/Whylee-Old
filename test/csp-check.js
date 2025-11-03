@@ -17,7 +17,7 @@ const clog = (...a) => { out.textContent += a.join(' ') + '\n'; };
 
     // 2) Load the bridge after config
     try {
-      await import('/scripts/firebase-bridge.js?v=9008');
+      await import('/scripts/firebase-bridge.js?v=9010');
       log('firebase-bridge loaded â€¦ âœ…');
     } catch (e) {
       log('firebase-bridge loaded â€¦ âŒ');
