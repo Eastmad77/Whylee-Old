@@ -1,5 +1,5 @@
 /**
- * Whylee Theme Manager (v9008)
+ * Whylee Theme Manager (v9010)
  * Path: /scripts/theme/theme.js
  */
 const ROOT = document.documentElement;
