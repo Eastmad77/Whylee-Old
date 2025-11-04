@@ -1,4 +1,4 @@
-## 🚀 Release Process (v8)
+## 🚀 Release Process (v9)
 
 1. **Env**
    - Set Netlify env from `/docs/ops/env.netlify.sample.env`
