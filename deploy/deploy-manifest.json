@@ -1,6 +1,6 @@
 {
   "app": "Whylee",
-  "version": "v8.0.0",
+  "version": "v9.0.0",
   "build": {
     "createdAt": "${ISO_DATETIME_ON_COMMIT}",
     "commit": "${GIT_SHA}",
@@ -77,28 +77,28 @@
   },
   "assets": {
     "css": [
-      "/styles/brand.css?v=9004",
-      "/styles/style.css?v=9004",
-      "/styles/base.css?v=9004",
-      "/styles/hud.css?v=9004",
-      "/styles/streakBar.css?v=9004",
-      "/styles/animations.css?v=9004",
-      "/styles/ads.css?v=9004",
-      "/styles/dark.css?v=9004"
+      "/styles/brand.css?v=9010",
+      "/styles/style.css?v=9010",
+      "/styles/base.css?v=9010",
+      "/styles/hud.css?v=9010",
+      "/styles/streakBar.css?v=9010",
+      "/styles/animations.css?v=9010",
+      "/styles/ads.css?v=9010",
+      "/styles/dark.css?v=9010"
     ],
     "scripts": [
-      "/scripts/game.js?v=9004",
-      "/scripts/ui/streakBar.js?v=9004",
-      "/scripts/components/pips.js?v=9004",
-      "/scripts/components/avatarBadge.js?v=9004",
-      "/scripts/ai/questionEngine.js?v=9004",
-      "/scripts/entitlements.js?v=9004",
-      "/scripts/ui/posterManager.js?v=9004",
-      "/scripts/payments/play.js?v=9004",
-      "/scripts/ads/consentManager.js?v=9004",
-      "/scripts/ads/adsense.js?v=9004",
-      "/scripts/ops/logClient.js?v=9004",
-      "/scripts/admin/monitor.js?v=9004"
+      "/scripts/game.js?v=9010",
+      "/scripts/ui/streakBar.js?v=9010",
+      "/scripts/components/pips.js?v=9010",
+      "/scripts/components/avatarBadge.js?v=9010",
+      "/scripts/ai/questionEngine.js?v=9010",
+      "/scripts/entitlements.js?v=9010",
+      "/scripts/ui/posterManager.js?v=9010",
+      "/scripts/payments/play.js?v=9010",
+      "/scripts/ads/consentManager.js?v=9010",
+      "/scripts/ads/adsense.js?v=9010",
+      "/scripts/ops/logClient.js?v=9010",
+      "/scripts/admin/monitor.js?v=9010"
     ],
     "mediaGlobs": [
       "/media/**",
